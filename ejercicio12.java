@@ -8,7 +8,19 @@ package guiadeejerciciosjava;
 import java.util.Scanner;
 
 /**
- *
+ *Realizar un programa que simule el funcionamiento de un dispositivo RS232, 
+ * este tipo de dispositivo lee cadenas enviadas por el usuario. Las cadenas 
+ * deben llegar con un formato fijo: tienen que ser de un máximo de 5 
+ * caracteres de largo, el primer carácter tiene que ser X y el último tiene 
+ * que ser una O.
+Las secuencias leídas que respeten el formato se consideran correctas, la 
+* secuencia especial “&&&&&” marca el final de los envíos (llamémosla FDE), 
+* y toda secuencia distinta de FDE, que no respete el formato se considera 
+* incorrecta.
+Al finalizar el proceso, se imprime un informe indicando la cantidad de 
+* lecturas correctas e incorrectas recibidas. Para resolver el ejercicio 
+* deberá investigar cómo se utilizan las siguientes funciones de Java 
+* Substring(), Length(), equals().
  * @author MAR
  */
 public class ejercicio12 {
@@ -19,30 +31,17 @@ public class ejercicio12 {
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
         String frase;
-        int ultimo;
-        boolean comparativa;
+
         do{
-        System.out.println("Ingrese una frase");
-        frase = leer.nextLine();
-        ultimo = frase.length();
-        if(frase.length()<=5){
-            System.out.println("LONGITUD CORRECTA");
-            if (frase.substring(0,1).equals("X")){
-                System.out.println("PRIMER LETRA CORRECTA");
-                if(frase.substring(ultimo-1,ultimo).equals("O")){
-                   System.out.println("ULTIMA LETRA CORRECTA"); 
-                }
-                    
-            }   
-        }else if(frase.equals("&&&&&")){
-            System.out.println("SALIR");
-        }else{
-           System.out.println("INCORRECTO");
-                }
-        comparativa = frase != "&&&&&";
-        System.out.println("LA COMPARACION ES " + comparativa);
+            System.out.println("Ingrese una frase");
+            frase = leer.nextLine();
+            if(frase.length()<=5 && frase.substring(0,1).equals("X") && frase.substring(frase.length()-1,frase.length()).equals("O")){
+                System.out.println("CORRECTO"); 
+            }else if(frase.equals("&&&&&")){
+                System.out.println("FIN");
+            }else{
+                System.out.println("INCORRECTO");
+            }
         }while(!frase.equals("&&&&&")); 
-        
-        
     }  
 }

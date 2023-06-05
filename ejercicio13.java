@@ -21,15 +21,16 @@ public class ejercicio13 {
         Scanner leer = new Scanner(System.in);
         int N, i,j;
         System.out.println("Ingrese un numero");
-        
         N = leer.nextInt();
+        
         for(i=0; i<N; i++){
             if(i==0 || i==N-1){
-                System.out.print(lineaAsteriscos("*",N));
+                System.out.print(crearLinea("*",N)+"\n");
             }else{
-                System.out.print("*" + lineaAsteriscos(" ",N-2) + "*");
+                System.out.print("*" + crearLinea(" ",N-2) + "*\n");
             }
         } 
+//        VERSION CON DOBLE FOR      
 //        for(i=0; i<N; i++){
 //            for(j=0;j<N;j++){
 //                if(j==0 || j==N-1 || i==0 || i==N-1  ){
@@ -41,11 +42,11 @@ public class ejercicio13 {
 //            System.out.println("");
 //        }
     }
-    public static String lineaAsteriscos(String letra, int veces){
+    public static String crearLinea(String letra, int veces){
         String salida = "";
         for (int i = 0; i < veces; i++) {
             salida+= letra ;
         }   
-        return (salida + "\n");
+        return salida;
     }  
 }
