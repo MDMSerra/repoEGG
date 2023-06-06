@@ -5,17 +5,14 @@
  */
 package guiadeejerciciosjava;
 
-import static guiadeejerciciosjava.ejercicio15.imprimirVector;
 import java.util.Scanner;
 
 /**
- *Realizar un algoritmo que rellene un vector de tamaño N con valores 
- * aleatorios y le pida al usuario un numero a buscar en el vector. 
- * El programa mostrará donde se encuentra el numero y si se encuentra 
- * repetido
+ *Recorrer un vector de N enteros contabilizando cuántos números son de 1 
+ * dígito, cuántos de 2 dígitos, etcétera (hasta 5 dígitos).
  * @author MAR
  */
-public class ejercicio16 {
+public class ejercicio17 {
 
     /**
      * @param args the command line arguments
@@ -27,19 +24,15 @@ public class ejercicio16 {
         int N = leer.nextInt();
         int[] vector;
         
-        
         vector = rellenarVector(N);
         imprimirVector(vector); 
-        
-        System.out.println("Ingrese el numero que desea buscar");
-        int buscar = leer.nextInt();
-        buscarNumero(vector, buscar);
+        contarDigitos(vector);
     }
     
     public static int[] rellenarVector(int cantidad){
         int[] vector = new int[cantidad];
         for (int i = 0; i < vector.length; i++) {
-           vector[i] = (int) (Math.random()*100);
+           vector[i] = (int) (Math.random()*15000);
         }
         return vector;
     }
@@ -50,12 +43,14 @@ public class ejercicio16 {
         }
     }
      
-    public static void buscarNumero(int[] vector, int buscar){
-        String estado = "NO ENCONTRADO";
+    public static void contarDigitos(int[] vector){
+        int[] contadorDigitos = new int[5];
         for (int elemento : vector) {
-            if (elemento == buscar)
-                estado = "ENCONTRADO";
+            int digito = String.valueOf(elemento).length();
+            if(digito<=5)
+                contadorDigitos[digito-1]++; 
         }
-        System.out.println( estado + " El numero " + buscar);
-    } 
+       imprimirVector(contadorDigitos);
+    }
+    
 }
